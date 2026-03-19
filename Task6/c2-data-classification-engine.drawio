@@ -1,0 +1,224 @@
+<mxfile host="app.diagrams.net" modified="2026-03-19T12:00:00.000Z" agent="Claude" version="24.7.17">
+  <diagram id="c2-classification-engine" name="C4 Container — Движок классификации данных">
+    <mxGraphModel dx="1800" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Title -->
+        <mxCell id="title" value="C4 Container Diagram — Движок классификации данных (Data Classification Engine)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="20" width="1200" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- ========== EXTERNAL SYSTEMS ========== -->
+
+        <!-- Source systems -->
+        <mxCell id="src_crm" value="&lt;b&gt;CRM / Scheduling&lt;/b&gt;&lt;br&gt;[External Software System]&lt;br&gt;&lt;br&gt;Записи пациентов, расписание.&lt;br&gt;Источник PII-данных." style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#7a7a7a;fontColor=#ffffff;labelBackgroundColor=none;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="60" y="200" width="180" height="160" as="geometry"/>
+        </mxCell>
+        <mxCell id="src_emr" value="&lt;b&gt;EMR&lt;/b&gt;&lt;br&gt;[External Software System]&lt;br&gt;&lt;br&gt;Медицинские карты, анализы.&lt;br&gt;Источник PHI-данных." style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#7a7a7a;fontColor=#ffffff;labelBackgroundColor=none;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="60" y="400" width="180" height="160" as="geometry"/>
+        </mxCell>
+        <mxCell id="src_1c" value="&lt;b&gt;1С / ERP&lt;/b&gt;&lt;br&gt;[External Software System]&lt;br&gt;&lt;br&gt;Платежи, бухгалтерия, склад.&lt;br&gt;Источник FINANCE-данных." style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#7a7a7a;fontColor=#ffffff;labelBackgroundColor=none;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="60" y="600" width="180" height="160" as="geometry"/>
+        </mxCell>
+        <mxCell id="src_files" value="&lt;b&gt;Legacy File Storage&lt;/b&gt;&lt;br&gt;[External Software System]&lt;br&gt;&lt;br&gt;Excel, PDF, JPG на диске.&lt;br&gt;Неразмеченные исходные файлы." style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#7a7a7a;fontColor=#ffffff;labelBackgroundColor=none;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="60" y="800" width="180" height="160" as="geometry"/>
+        </mxCell>
+
+        <!-- DWH / downstream -->
+        <mxCell id="dst_dwh" value="&lt;b&gt;DWH / Data Lakehouse&lt;/b&gt;&lt;br&gt;[External Software System]&lt;br&gt;&lt;br&gt;Аналитическое хранилище.&lt;br&gt;Принимает только обработанные,&lt;br&gt;помеченные данные." style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#7a7a7a;fontColor=#ffffff;labelBackgroundColor=none;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1760" y="480" width="180" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="dst_audit" value="&lt;b&gt;Audit / SIEM&lt;/b&gt;&lt;br&gt;[External Software System]&lt;br&gt;&lt;br&gt;Журналирование всех решений&lt;br&gt;движка, аномалии, алертинг." style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#7a7a7a;fontColor=#ffffff;labelBackgroundColor=none;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1760" y="720" width="180" height="160" as="geometry"/>
+        </mxCell>
+        <mxCell id="dst_catalog" value="&lt;b&gt;Metadata Catalog&lt;/b&gt;&lt;br&gt;[External Software System]&lt;br&gt;&lt;br&gt;Apache Atlas / OpenMetadata.&lt;br&gt;Теги, lineage, версии схем." style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#7a7a7a;fontColor=#ffffff;labelBackgroundColor=none;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1760" y="240" width="180" height="160" as="geometry"/>
+        </mxCell>
+
+        <!-- ========== SYSTEM BOUNDARY: Data Classification Engine ========== -->
+        <mxCell id="boundary" value="Data Classification Engine [System Boundary]" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];shape=mxgraph.c4.system_boundary;whiteSpace=wrap;html=1;strokeColor=#444444;fillColor=none;fontStyle=1;fontSize=13;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="320" y="120" width="1370" height="1000" as="geometry"/>
+        </mxCell>
+
+        <!-- ========== CONTAINERS ========== -->
+
+        <!-- 1. Ingestion / Landing Zone -->
+        <mxCell id="c_ingest" value="&lt;b&gt;Ingestion / Landing Zone&lt;/b&gt;&lt;br&gt;[Container: Message Queue / Storage]&lt;br&gt;&lt;br&gt;Принимает пакеты данных от источников.&lt;br&gt;Краткосрочное хранение (TTL).&lt;br&gt;Kafka / S3 Raw." style="shape=mxgraph.c4.component2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;labelBackgroundColor=none;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="370" y="440" width="210" height="180" as="geometry"/>
+        </mxCell>
+
+        <!-- 2. Schema Registry -->
+        <mxCell id="c_schema" value="&lt;b&gt;Schema Registry&lt;/b&gt;&lt;br&gt;[Container: Service]&lt;br&gt;&lt;br&gt;Отслеживает версии структур данных.&lt;br&gt;Обнаруживает структурные изменения.&lt;br&gt;Confluent Schema Registry / Apicurio." style="shape=mxgraph.c4.component2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;labelBackgroundColor=none;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="370" y="700" width="210" height="180" as="geometry"/>
+        </mxCell>
+
+        <!-- 3. Data Profiler -->
+        <mxCell id="c_profiler" value="&lt;b&gt;Data Profiler&lt;/b&gt;&lt;br&gt;[Container: Service]&lt;br&gt;&lt;br&gt;Вычисляет: null-rate, cardinality,&lt;br&gt;regex match, распределения значений.&lt;br&gt;Apache Spark / Great Expectations." style="shape=mxgraph.c4.component2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;labelBackgroundColor=none;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="660" y="280" width="210" height="180" as="geometry"/>
+        </mxCell>
+
+        <!-- 4. Classification Engine -->
+        <mxCell id="c_classifier" value="&lt;b&gt;Classification Engine&lt;/b&gt;&lt;br&gt;[Container: Service — Core]&lt;br&gt;&lt;br&gt;Определяет класс поля: PII/PHI/FINANCE.&lt;br&gt;Объединяет сигналы Rules Engine + ML.&lt;br&gt;Python / Java сервис." style="shape=mxgraph.c4.component2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;labelBackgroundColor=none;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="660" y="530" width="210" height="190" as="geometry"/>
+        </mxCell>
+
+        <!-- 5. Rules Engine -->
+        <mxCell id="c_rules" value="&lt;b&gt;Rules Engine&lt;/b&gt;&lt;br&gt;[Container: Service]&lt;br&gt;&lt;br&gt;Политики по тегам и Privacy.&lt;br&gt;Regex / словари / контекстные правила.&lt;br&gt;Drools / custom DSL." style="shape=mxgraph.c4.component2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;labelBackgroundColor=none;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="660" y="790" width="210" height="180" as="geometry"/>
+        </mxCell>
+
+        <!-- 6. ML/NLP Detector -->
+        <mxCell id="c_ml" value="&lt;b&gt;ML / NLP Detector&lt;/b&gt;&lt;br&gt;[Container: Service]&lt;br&gt;&lt;br&gt;Распознаёт новые / нестандартные поля.&lt;br&gt;NER-модели (SpaCy / Presidio).&lt;br&gt;Обновляется через CI/CD." style="shape=mxgraph.c4.component2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;labelBackgroundColor=none;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="950" y="280" width="210" height="180" as="geometry"/>
+        </mxCell>
+
+        <!-- 7. Policy Decision Point -->
+        <mxCell id="c_pdp" value="&lt;b&gt;Policy Decision Point&lt;/b&gt;&lt;br&gt;[Container: Service]&lt;br&gt;&lt;br&gt;Решает: загрузить / маскировать /&lt;br&gt;обезличить / карантин.&lt;br&gt;OPA / custom policy engine." style="shape=mxgraph.c4.component2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;labelBackgroundColor=none;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="950" y="530" width="210" height="190" as="geometry"/>
+        </mxCell>
+
+        <!-- 8. Masking / Tokenization -->
+        <mxCell id="c_mask" value="&lt;b&gt;Masking / Tokenization /&lt;br&gt;Pseudonymization&lt;/b&gt;&lt;br&gt;[Container: Service]&lt;br&gt;&lt;br&gt;Применяет трансформации к данным.&lt;br&gt;ARX / custom + Vault Transit." style="shape=mxgraph.c4.component2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;labelBackgroundColor=none;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="280" width="210" height="200" as="geometry"/>
+        </mxCell>
+
+        <!-- 9. Quarantine Zone -->
+        <mxCell id="c_quarantine" value="&lt;b&gt;Quarantine Zone&lt;/b&gt;&lt;br&gt;[Container: Storage]&lt;br&gt;&lt;br&gt;Задержанные наборы, требующие&lt;br&gt;ручного разбора.&lt;br&gt;S3 / restricted bucket." style="shape=mxgraph.c4.component2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;labelBackgroundColor=none;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="560" width="210" height="180" as="geometry"/>
+        </mxCell>
+
+        <!-- 10. Curated Secure Zone -->
+        <mxCell id="c_curated" value="&lt;b&gt;Curated Secure Zone&lt;/b&gt;&lt;br&gt;[Container: Storage]&lt;br&gt;&lt;br&gt;Обработанные наборы для BI.&lt;br&gt;Контролируемый доступ, теги,&lt;br&gt;шифрование at rest (AES-256)." style="shape=mxgraph.c4.component2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;labelBackgroundColor=none;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="820" width="210" height="190" as="geometry"/>
+        </mxCell>
+
+        <!-- ========== DATA STORE LAYERS (in-system) ========== -->
+        <!-- Raw Restricted Zone label -->
+        <mxCell id="layer_raw" value="Raw Restricted Zone" style="text;html=1;strokeColor=#b85450;fillColor=#f8cecc;fontSize=11;fontStyle=1;align=center;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="340" y="160" width="270" height="30" as="geometry"/>
+        </mxCell>
+        <!-- Privacy Processing Zone label -->
+        <mxCell id="layer_proc" value="Privacy Processing Zone" style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;fontSize=11;fontStyle=1;align=center;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="630" y="160" width="570" height="30" as="geometry"/>
+        </mxCell>
+        <!-- Output Zone label -->
+        <mxCell id="layer_out" value="Curated / Quarantine / DWH Zone" style="text;html=1;strokeColor=#0E5CA8;fillColor=#dae8fc;fontSize=11;fontStyle=1;align=center;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1210" y="160" width="270" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- ========== RELATIONSHIPS ========== -->
+
+        <!-- Sources -> Ingestion -->
+        <mxCell id="r_src1" value="batch data" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;strokeColor=#7a7a7a;fontSize=10;" edge="1" source="src_crm" target="c_ingest" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_src2" value="batch data" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#7a7a7a;fontSize=10;" edge="1" source="src_emr" target="c_ingest" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_src3" value="batch data" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.7;entryDx=0;entryDy=0;strokeColor=#7a7a7a;fontSize=10;" edge="1" source="src_1c" target="c_ingest" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_src4" value="file export" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.9;entryDx=0;entryDy=0;strokeColor=#7a7a7a;fontSize=10;" edge="1" source="src_files" target="c_ingest" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Ingestion -> Schema Registry -->
+        <mxCell id="r_i_schema" value="schema check" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;" edge="1" source="c_ingest" target="c_schema" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Ingestion -> Profiler -->
+        <mxCell id="r_i_prof" value="raw dataset" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.4;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;" edge="1" source="c_ingest" target="c_profiler" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Profiler -> Classifier -->
+        <mxCell id="r_prof_class" value="profile signals" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;" edge="1" source="c_profiler" target="c_classifier" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Schema -> Classifier -->
+        <mxCell id="r_schema_class" value="schema version" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.7;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;" edge="1" source="c_schema" target="c_classifier" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Classifier -> Rules -->
+        <mxCell id="r_class_rules" value="field list + signals" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;" edge="1" source="c_classifier" target="c_rules" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ML -> Classifier -->
+        <mxCell id="r_ml_class" value="ml predictions" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.3;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;" edge="1" source="c_ml" target="c_classifier" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Profiler -> ML -->
+        <mxCell id="r_prof_ml" value="raw data sample" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;" edge="1" source="c_profiler" target="c_ml" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Rules + ML -> PDP -->
+        <mxCell id="r_rules_pdp" value="classification result" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.7;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;" edge="1" source="c_rules" target="c_pdp" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_class_pdp" value="class + confidence" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;" edge="1" source="c_classifier" target="c_pdp" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- PDP -> Masking -->
+        <mxCell id="r_pdp_mask" value="mask / tokenize decision" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;" edge="1" source="c_pdp" target="c_mask" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- PDP -> Quarantine -->
+        <mxCell id="r_pdp_quar" value="quarantine decision" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#b85450;fontColor=#b85450;fontSize=10;" edge="1" source="c_pdp" target="c_quarantine" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- PDP -> Curated (allow) -->
+        <mxCell id="r_pdp_cur" value="allow (non-sensitive)" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.7;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#82b366;fontColor=#82b366;fontSize=10;" edge="1" source="c_pdp" target="c_curated" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Masking -> Curated -->
+        <mxCell id="r_mask_cur" value="transformed data" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#82b366;fontColor=#82b366;fontSize=10;" edge="1" source="c_mask" target="c_curated" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Curated -> DWH -->
+        <mxCell id="r_cur_dwh" value="tagged, masked data" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#7a7a7a;fontSize=10;" edge="1" source="c_curated" target="dst_dwh" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Classifier + PDP -> Catalog (tags) -->
+        <mxCell id="r_class_catalog" value="write tags + lineage" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.15;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;dashed=1;" edge="1" source="c_classifier" target="dst_catalog" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- PDP + Classifier -> Audit -->
+        <mxCell id="r_pdp_audit" value="classification decisions" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;dashed=1;" edge="1" source="c_pdp" target="dst_audit" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ========== LEGEND ========== -->
+        <mxCell id="leg_title" value="Легенда" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1050" width="100" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg_container" value="Контейнер [Container]" style="shape=mxgraph.c4.component2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1075" width="180" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg_ext_sys" value="Внешняя система [External]" style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#7a7a7a;fontColor=#ffffff;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="260" y="1075" width="180" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg_green" value="Зелёная стрелка — данные прошли проверку (allow)" style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;fontSize=11;align=left;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="460" y="1075" width="340" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg_red" value="Красная стрелка — данные отправлены в карантин" style="text;html=1;strokeColor=#b85450;fillColor=#f8cecc;fontSize=11;align=left;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="460" y="1110" width="340" height="25" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

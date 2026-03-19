@@ -1,0 +1,244 @@
+<mxfile host="app.diagrams.net" modified="2026-03-19T12:00:00.000Z" agent="Claude" version="24.7.17">
+  <diagram id="c4-context-mvp" name="C4 Context — Целевое состояние MVP">
+    <mxGraphModel dx="1620" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Title -->
+        <mxCell id="title" value="C4 Context Diagram — Медикаменте (Целевое состояние, MVP)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="20" width="900" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- =================== PERSONS =================== -->
+
+        <!-- Пациент -->
+        <mxCell id="p_patient" value="&lt;b&gt;Пациент&lt;/b&gt;&lt;br&gt;[Person]&lt;br&gt;&lt;br&gt;Клиент медицинского центра.&lt;br&gt;Записывается на приём,&lt;br&gt;просматривает свои данные." style="shape=mxgraph.c4.person2;whiteSpace=wrap;html=1;fillColor=#08427B;strokeColor=#073B6F;fontColor=#ffffff;labelBackgroundColor=none;align=center;sketch=0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="420" width="160" height="170" as="geometry"/>
+        </mxCell>
+
+        <!-- Сотрудник ресепшена -->
+        <mxCell id="p_reception" value="&lt;b&gt;Сотрудник ресепшена&lt;/b&gt;&lt;br&gt;[Person]&lt;br&gt;&lt;br&gt;Управляет записями&lt;br&gt;пациентов, видит&lt;br&gt;расписание." style="shape=mxgraph.c4.person2;whiteSpace=wrap;html=1;fillColor=#08427B;strokeColor=#073B6F;fontColor=#ffffff;labelBackgroundColor=none;align=center;sketch=0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="680" width="160" height="170" as="geometry"/>
+        </mxCell>
+
+        <!-- Врач -->
+        <mxCell id="p_doctor" value="&lt;b&gt;Врач&lt;/b&gt;&lt;br&gt;[Person]&lt;br&gt;&lt;br&gt;Ведёт приём,&lt;br&gt;вносит результаты&lt;br&gt;осмотра и назначения." style="shape=mxgraph.c4.person2;whiteSpace=wrap;html=1;fillColor=#08427B;strokeColor=#073B6F;fontColor=#ffffff;labelBackgroundColor=none;align=center;sketch=0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="200" width="160" height="170" as="geometry"/>
+        </mxCell>
+
+        <!-- Кассир / Бухгалтер -->
+        <mxCell id="p_cashier" value="&lt;b&gt;Кассир / Бухгалтер&lt;/b&gt;&lt;br&gt;[Person]&lt;br&gt;&lt;br&gt;Проводит платежи,&lt;br&gt;ведёт финансовый учёт." style="shape=mxgraph.c4.person2;whiteSpace=wrap;html=1;fillColor=#08427B;strokeColor=#073B6F;fontColor=#ffffff;labelBackgroundColor=none;align=center;sketch=0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="940" width="160" height="170" as="geometry"/>
+        </mxCell>
+
+        <!-- Администратор ИТ -->
+        <mxCell id="p_admin" value="&lt;b&gt;ИТ-администратор&lt;/b&gt;&lt;br&gt;[Person]&lt;br&gt;&lt;br&gt;Управляет инфраструктурой,&lt;br&gt;доступом, мониторингом." style="shape=mxgraph.c4.person2;whiteSpace=wrap;html=1;fillColor=#08427B;strokeColor=#073B6F;fontColor=#ffffff;labelBackgroundColor=none;align=center;sketch=0;" vertex="1" parent="1">
+          <mxGeometry x="1680" y="420" width="160" height="170" as="geometry"/>
+        </mxCell>
+
+        <!-- =================== SYSTEM BOUNDARY =================== -->
+        <mxCell id="boundary" value="МЕДИКАМЕНТЕ [Граница системы]" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];shape=mxgraph.c4.system_boundary;whiteSpace=wrap;html=1;strokeColor=#444444;fillColor=none;fontStyle=1;fontSize=13;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="320" y="140" width="1300" height="1040" as="geometry"/>
+        </mxCell>
+
+        <!-- =================== SOFTWARE SYSTEMS (internal) =================== -->
+
+        <!-- Клиентский портал / мобильное приложение -->
+        <mxCell id="s_portal" value="&lt;b&gt;Клиентский портал&lt;/b&gt;&lt;br&gt;[Software System]&lt;br&gt;&lt;br&gt;Личный кабинет пациента.&lt;br&gt;Запись на приём, просмотр&lt;br&gt;своих данных, уведомления." style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;labelBackgroundColor=none;align=center;sketch=0;" vertex="1" parent="1">
+          <mxGeometry x="370" y="380" width="200" height="180" as="geometry"/>
+        </mxCell>
+
+        <!-- Портал сотрудников -->
+        <mxCell id="s_staff" value="&lt;b&gt;Портал сотрудника&lt;/b&gt;&lt;br&gt;[Software System]&lt;br&gt;&lt;br&gt;Рабочее место ресепшена,&lt;br&gt;врача, кассира.&lt;br&gt;Расписание, медкарты, платежи." style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;labelBackgroundColor=none;align=center;sketch=0;" vertex="1" parent="1">
+          <mxGeometry x="370" y="640" width="200" height="180" as="geometry"/>
+        </mxCell>
+
+        <!-- API Gateway + WAF -->
+        <mxCell id="s_gateway" value="&lt;b&gt;API Gateway + WAF&lt;/b&gt;&lt;br&gt;[Software System]&lt;br&gt;&lt;br&gt;Единая точка входа.&lt;br&gt;Rate limiting, WAF,&lt;br&gt;авторизация контрактов." style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;labelBackgroundColor=none;align=center;sketch=0;" vertex="1" parent="1">
+          <mxGeometry x="640" y="500" width="200" height="180" as="geometry"/>
+        </mxCell>
+
+        <!-- IAM -->
+        <mxCell id="s_iam" value="&lt;b&gt;IAM / OIDC&lt;/b&gt;&lt;br&gt;[Software System]&lt;br&gt;&lt;br&gt;Аутентификация, MFA,&lt;br&gt;RBAC/ABAC, выдача токенов.&lt;br&gt;&lt;i&gt;(Privacy by Design)&lt;/i&gt;" style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;labelBackgroundColor=none;align=center;sketch=0;" vertex="1" parent="1">
+          <mxGeometry x="640" y="200" width="200" height="180" as="geometry"/>
+        </mxCell>
+
+        <!-- CRM / Scheduling -->
+        <mxCell id="s_crm" value="&lt;b&gt;CRM / Scheduling&lt;/b&gt;&lt;br&gt;[Software System]&lt;br&gt;&lt;br&gt;Управление записями,&lt;br&gt;расписанием, журналом приёма,&lt;br&gt;контрактами." style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;labelBackgroundColor=none;align=center;sketch=0;" vertex="1" parent="1">
+          <mxGeometry x="920" y="300" width="200" height="180" as="geometry"/>
+        </mxCell>
+
+        <!-- EMR -->
+        <mxCell id="s_emr" value="&lt;b&gt;EMR (Медицинские записи)&lt;/b&gt;&lt;br&gt;[Software System]&lt;br&gt;&lt;br&gt;Хранение и обработка PHI:&lt;br&gt;диагнозы, назначения,&lt;br&gt;результаты анализов." style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;labelBackgroundColor=none;align=center;sketch=0;" vertex="1" parent="1">
+          <mxGeometry x="920" y="540" width="200" height="180" as="geometry"/>
+        </mxCell>
+
+        <!-- Payment Gateway -->
+        <mxCell id="s_pay" value="&lt;b&gt;Payment Gateway&lt;/b&gt;&lt;br&gt;[Software System]&lt;br&gt;&lt;br&gt;Платёжный шлюз.&lt;br&gt;Токенизация, расчёты,&lt;br&gt;интеграция с ККМ и 1С." style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;labelBackgroundColor=none;align=center;sketch=0;" vertex="1" parent="1">
+          <mxGeometry x="920" y="780" width="200" height="180" as="geometry"/>
+        </mxCell>
+
+        <!-- Consent & Privacy Service -->
+        <mxCell id="s_consent" value="&lt;b&gt;Consent &amp; Privacy Service&lt;/b&gt;&lt;br&gt;[Software System]&lt;br&gt;&lt;br&gt;Хранение согласий (152-ФЗ ст. 9),&lt;br&gt;отзыв согласий, удаление ПДн&lt;br&gt;по запросу (ст. 17, 21).&lt;br&gt;&lt;i&gt;(Privacy by Design)&lt;/i&gt;" style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;labelBackgroundColor=none;align=center;sketch=0;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="200" width="200" height="200" as="geometry"/>
+        </mxCell>
+
+        <!-- Metadata / Tag Catalog -->
+        <mxCell id="s_catalog" value="&lt;b&gt;Metadata &amp; Tag Catalog&lt;/b&gt;&lt;br&gt;[Software System]&lt;br&gt;&lt;br&gt;Классификация данных,&lt;br&gt;lineage, теги PII/PHI/FINANCE.&lt;br&gt;&lt;i&gt;(Privacy by Design)&lt;/i&gt;" style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;labelBackgroundColor=none;align=center;sketch=0;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="460" width="200" height="200" as="geometry"/>
+        </mxCell>
+
+        <!-- Audit / SIEM / DLP / UEBA -->
+        <mxCell id="s_audit" value="&lt;b&gt;Audit / SIEM / DLP / UEBA&lt;/b&gt;&lt;br&gt;[Software System]&lt;br&gt;&lt;br&gt;Аудит доступа к данным,&lt;br&gt;корреляция событий, DLP,&lt;br&gt;алертинг аномалий.&lt;br&gt;&lt;i&gt;(Privacy by Design)&lt;/i&gt;" style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;labelBackgroundColor=none;align=center;sketch=0;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="720" width="200" height="200" as="geometry"/>
+        </mxCell>
+
+        <!-- KMS / Vault -->
+        <mxCell id="s_kms" value="&lt;b&gt;KMS / Vault&lt;/b&gt;&lt;br&gt;[Software System]&lt;br&gt;&lt;br&gt;Централизованное управление&lt;br&gt;ключами, секретами,&lt;br&gt;сертификатами.&lt;br&gt;&lt;i&gt;(Privacy by Design)&lt;/i&gt;" style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;labelBackgroundColor=none;align=center;sketch=0;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="980" width="200" height="160" as="geometry"/>
+        </mxCell>
+
+        <!-- Analytical Privacy Layer + DWH -->
+        <mxCell id="s_datalayer" value="&lt;b&gt;Analytical Privacy Layer + DWH&lt;/b&gt;&lt;br&gt;[Software System]&lt;br&gt;&lt;br&gt;Обезличивание данных,&lt;br&gt;Data Lakehouse, BI/ML/AI&lt;br&gt;с Privacy by Design.&lt;br&gt;&lt;i&gt;(Privacy by Design)&lt;/i&gt;" style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;labelBackgroundColor=none;align=center;sketch=0;" vertex="1" parent="1">
+          <mxGeometry x="640" y="900" width="200" height="200" as="geometry"/>
+        </mxCell>
+
+        <!-- =================== EXTERNAL SOFTWARE SYSTEMS =================== -->
+
+        <!-- Лаборатория -->
+        <mxCell id="s_lab" value="&lt;b&gt;Лаборатория анализов&lt;/b&gt;&lt;br&gt;[External Software System]&lt;br&gt;&lt;br&gt;Внешняя медицинская лаборатория.&lt;br&gt;Интеграция через API." style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#7a7a7a;fontColor=#ffffff;labelBackgroundColor=none;align=center;sketch=0;" vertex="1" parent="1">
+          <mxGeometry x="1680" y="200" width="200" height="180" as="geometry"/>
+        </mxCell>
+
+        <!-- 1С (legacy) -->
+        <mxCell id="s_1c" value="&lt;b&gt;1С:Бухгалтерия / 1С:Торговля&lt;/b&gt;&lt;br&gt;[External Software System]&lt;br&gt;&lt;br&gt;Существующие legacy-системы.&lt;br&gt;Постепенно замещаются&lt;br&gt;Payment Gateway и ERP." style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#7a7a7a;fontColor=#ffffff;labelBackgroundColor=none;align=center;sketch=0;" vertex="1" parent="1">
+          <mxGeometry x="1680" y="700" width="200" height="180" as="geometry"/>
+        </mxCell>
+
+        <!-- =================== RELATIONSHIPS =================== -->
+
+        <!-- Пациент -> Клиентский портал -->
+        <mxCell id="r1" value="HTTPS / OAuth2 / OIDC + MFA" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#07427b;fontColor=#07427b;fontSize=10;" edge="1" source="p_patient" target="s_portal" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Ресепшен / Врач / Кассир -> Портал сотрудника -->
+        <mxCell id="r2" value="HTTPS / OIDC + MFA + RBAC" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#07427b;fontColor=#07427b;fontSize=10;" edge="1" source="p_reception" target="s_staff" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r2b" value="HTTPS / OIDC + MFA + ABAC" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;strokeColor=#07427b;fontColor=#07427b;fontSize=10;" edge="1" source="p_doctor" target="s_staff" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r2c" value="HTTPS / OIDC + MFA" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;strokeColor=#07427b;fontColor=#07427b;fontSize=10;" edge="1" source="p_cashier" target="s_staff" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Порталы -> API Gateway -->
+        <mxCell id="r3" value="TLS + JWT" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.35;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;" edge="1" source="s_portal" target="s_gateway" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r4" value="TLS + JWT" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.65;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;" edge="1" source="s_staff" target="s_gateway" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- API Gateway -> IAM -->
+        <mxCell id="r5" value="verify token / introspect" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;" edge="1" source="s_gateway" target="s_iam" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- API Gateway -> CRM / EMR / Payment -->
+        <mxCell id="r6" value="mTLS" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;" edge="1" source="s_gateway" target="s_crm" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r7" value="mTLS" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;" edge="1" source="s_gateway" target="s_emr" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r8" value="mTLS" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.7;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;" edge="1" source="s_gateway" target="s_pay" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- CRM / EMR / Payment -> Consent -->
+        <mxCell id="r9" value="consent check" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.35;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;dashed=1;" edge="1" source="s_crm" target="s_consent" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r10" value="consent check" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;dashed=1;" edge="1" source="s_emr" target="s_consent" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Services -> Catalog -->
+        <mxCell id="r11" value="tag / lineage" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.35;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;dashed=1;" edge="1" source="s_crm" target="s_catalog" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r12" value="tag / lineage" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;dashed=1;" edge="1" source="s_emr" target="s_catalog" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Services -> Audit -->
+        <mxCell id="r13" value="audit events" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;dashed=1;" edge="1" source="s_crm" target="s_audit" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r14" value="audit events" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;dashed=1;" edge="1" source="s_emr" target="s_audit" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r15" value="audit events" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.7;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;dashed=1;" edge="1" source="s_pay" target="s_audit" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r15b" value="audit events" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.1;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;dashed=1;" edge="1" source="s_gateway" target="s_audit" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- KMS -> all (keys) -->
+        <mxCell id="r16" value="ключи шифрования" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#aa0000;fontColor=#aa0000;fontSize=10;dashed=1;" edge="1" source="s_kms" target="s_crm" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r17" value="ключи шифрования" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0;exitY=0.3;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#aa0000;fontColor=#aa0000;fontSize=10;dashed=1;" edge="1" source="s_kms" target="s_emr" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r18" value="ключи" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0;exitY=0.7;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#aa0000;fontColor=#aa0000;fontSize=10;dashed=1;" edge="1" source="s_kms" target="s_pay" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Services -> Analytical layer -->
+        <mxCell id="r19" value="безопасный ETL / обезличивание" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;" edge="1" source="s_emr" target="s_datalayer" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r20" value="агрегаты" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.3;entryDx=0;entryDy=0;strokeColor=#444444;fontSize=10;" edge="1" source="s_crm" target="s_datalayer" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- External: Лаборатория -> API Gateway -->
+        <mxCell id="r21" value="mTLS + API key + schema validation" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#7a7a7a;fontColor=#555555;fontSize=10;" edge="1" source="s_lab" target="s_gateway" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- External: 1С -> Payment -->
+        <mxCell id="r22" value="мин. набор реквизитов / файловый обмен" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#7a7a7a;fontColor=#555555;fontSize=10;" edge="1" source="s_1c" target="s_pay" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ИТ-Администратор -> Audit -->
+        <mxCell id="r23" value="мониторинг, алертинг" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#07427b;fontColor=#07427b;fontSize=10;" edge="1" source="p_admin" target="s_audit" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Legend -->
+        <mxCell id="leg_title" value="Легенда" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="80" y="1160" width="120" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg_person" value="Пользователь [Person]" style="shape=mxgraph.c4.person2;whiteSpace=wrap;html=1;fillColor=#08427B;strokeColor=#073B6F;fontColor=#ffffff;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="80" y="1185" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg_system" value="Система [Software System]" style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CA8;fontColor=#ffffff;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="240" y="1185" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg_ext" value="Внешняя система [External]" style="shape=mxgraph.c4.system2;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#7a7a7a;fontColor=#ffffff;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="440" y="1185" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg_privacy" value="(Privacy by Design) — сквозные блоки безопасности, вынесены в платформенный слой" style="text;html=1;strokeColor=none;fillColor=#dae8fc;fontSize=11;align=left;whiteSpace=wrap;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="640" y="1195" width="600" height="40" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
