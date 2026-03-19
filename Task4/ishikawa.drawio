@@ -1,0 +1,55 @@
+<mxfile host="app.diagrams.net" modified="2026-03-19T12:00:00.000Z" agent="Codex" version="24.7.17">
+  <diagram id="ishikawa-medikamente" name="Page-1">
+    <mxGraphModel dx="1420" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="2" value="Снижение производительности и надёжности при миграции" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="380" width="330" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="3" value="" style="endArrow=none;html=1;strokeWidth=3;" edge="1" parent="1" source="4" target="2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="4" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="150" y="410" width="20" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="10" value="Инфраструктура&#xa;- единый локальный сервер&#xa;- нет HA/DR&#xa;- сетевые ограничения" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="260" y="120" width="220" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="10" target="3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="12" value="ПО и архитектура&#xa;- Excel как источник правды&#xa;- файловый режим 1С&#xa;- сильная связность" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="470" y="230" width="220" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="13" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="12" target="3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="14" value="Данные и интеграции&#xa;- дублирование данных&#xa;- нет lineage&#xa;- разные форматы" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="690" y="120" width="220" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="15" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="14" target="3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="16" value="Процессы&#xa;- ручной ввод&#xa;- двойной учёт&#xa;- нет формального rollback" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="260" y="590" width="220" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="17" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="16" target="3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="18" value="Персонал&#xa;- маленькая ИТ-команда&#xa;- знания у нескольких людей&#xa;- нехватка security/data экспертизы" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="500" y="500" width="240" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="19" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="18" target="3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="20" value="Безопасность и наблюдаемость&#xa;- нет SIEM/DLP&#xa;- слабый аудит&#xa;- позднее обнаружение ошибок" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="760" y="590" width="240" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="21" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="20" target="3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
